@@ -42,8 +42,8 @@ The API responses a list of labels with corresponding confidence scores of how l
 
 In object detection, this service localizes and identifies multiple objects in the image such as people, animals, vehicles, furniture, etc. see machine learning services.
 
-![photo by Ernest Ojeh on Unsplash](./docs/output.png)
-> *photo by Ernest Ojeh on Unsplash*
+![original photo by Ernest Ojeh on Unsplash](./docs/output.png)
+> *original photo by Ernest Ojeh on Unsplash*
 
 A response is returned in JSON format similar to the following example:
 
