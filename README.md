@@ -8,6 +8,8 @@ Nvision image processing is **synchronous**. The input requests and output respo
 
 ## Installation
 
+Using pypi package here: https://pypi.org/project/nvision/
+
 ```bash
 pip install nvision
 ```
