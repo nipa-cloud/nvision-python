@@ -26,10 +26,37 @@ class ObjectDetection:
         self.headers = copy.copy(default_headers)
         self.headers['Authorization'] = 'ApiKey {}'.format(api_key)
 
-    def predict(self, image):
-        data = json.dumps({"raw_data": image})
+    def predict(self,
+                image,
+                confidence_threshold=0.1,
+                output_cropped_image=False):
+        """
+        docstring: Make a RESTful request for model inference
+            :param image: base64 encoded string
+            :param confidence_threshold: float
+                - value options: [0,1]
+                - default: 0.1
+            :param output_cropped_image: Boolean
+                - value options: True or False,
+                - default: False
+        """
+
+        data = {
+            "raw_data": image,
+            "configurations": [
+                {
+                    "parameter": "ConfidenceThreshold",
+                    "value": str(confidence_threshold)
+                },
+                {
+                    "parameter": "OutputCroppedImage",
+                    "value": str(output_cropped_image).lower()
+                }
+            ]
+        }
+
         response = requests.post(url=self.endpoint,
                                  headers=self.headers,
-                                 data=data)
+                                 data=json.dumps(data))
 
         return response
