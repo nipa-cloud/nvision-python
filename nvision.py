@@ -3,7 +3,7 @@ import copy
 import json
 import requests
 
-default_url = os.getenv('URL', 'https://nvision.nipa.cloud/api/')
+default_url = os.getenv('URL', 'https://nvision-api.nipa.cloud/v1/')
 default_headers = {
     'Content-Type': 'application/json; charset=utf-8',
 }
