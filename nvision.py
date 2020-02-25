@@ -19,9 +19,9 @@ def scrub_dict(d):
     return new_dict
 
 
-class ObjectDetection:
-    def __init__(self, api_key):
-        service_name = 'object-detection'
+class API(object):
+    def __init__(self, api_key, service_name):
+        self.service_name = service_name
         self.endpoint = default_url + service_name
         self.headers = copy.copy(default_headers)
         self.headers['Authorization'] = 'ApiKey {}'.format(api_key)
@@ -46,11 +46,10 @@ class ObjectDetection:
             "configurations": [{
                 "parameter": "ConfidenceThreshold",
                 "value": str(confidence_threshold)
-            },
-                               {
-                                   "parameter": "OutputCroppedImage",
-                                   "value": str(output_cropped_image).lower()
-                               }]
+            }, {
+                "parameter": "OutputCroppedImage",
+                "value": str(output_cropped_image).lower()
+            }]
         }
 
         response = requests.post(url=self.endpoint,
@@ -58,3 +57,13 @@ class ObjectDetection:
                                  data=json.dumps(data))
 
         return response
+
+
+class ObjectDetection(API):
+    def __init__(self, api_key):
+        super().__init__(api_key, service_name='object-detection')
+
+
+class FaceDetection:
+    def __init__(self, api_key):
+        super().__init__(api_key, service_name='face-detection')
