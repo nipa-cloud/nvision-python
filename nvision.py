@@ -3,7 +3,7 @@ import copy
 import json
 import requests
 
-default_url = os.getenv('URL', 'https://nvision-api.nipa.cloud/v1/')
+default_url = os.getenv('URL', 'https://nvision.nipa.cloud/api/v1/')
 default_headers = {
     'Content-Type': 'application/json; charset=utf-8',
 }
@@ -43,16 +43,14 @@ class ObjectDetection:
 
         data = {
             "raw_data": image,
-            "configurations": [
-                {
-                    "parameter": "ConfidenceThreshold",
-                    "value": str(confidence_threshold)
-                },
-                {
-                    "parameter": "OutputCroppedImage",
-                    "value": str(output_cropped_image).lower()
-                }
-            ]
+            "configurations": [{
+                "parameter": "ConfidenceThreshold",
+                "value": str(confidence_threshold)
+            },
+                               {
+                                   "parameter": "OutputCroppedImage",
+                                   "value": str(output_cropped_image).lower()
+                               }]
         }
 
         response = requests.post(url=self.endpoint,
