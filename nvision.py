@@ -29,7 +29,8 @@ class API(object):
     def predict(self,
                 image,
                 confidence_threshold=0.1,
-                output_cropped_image=False):
+                output_cropped_image=False,
+                output_visualized_image=False):
         """
         docstring: Make a RESTful request for model inference
             :param image: base64 encoded string
@@ -37,6 +38,9 @@ class API(object):
                 - value options: [0,1]
                 - default: 0.1
             :param output_cropped_image: Boolean
+                - value options: True or False,
+                - default: False
+            :param output_visualized_image: Boolean
                 - value options: True or False,
                 - default: False
         """
@@ -49,6 +53,9 @@ class API(object):
             }, {
                 "parameter": "OutputCroppedImage",
                 "value": str(output_cropped_image).lower()
+            }, {
+                "parameter": "OutputVisualizedImage",
+                "value": str(output_visualized_image).lower()
             }]
         }
 
